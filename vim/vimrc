@@ -1,0 +1,114 @@
+" Nuff said
+set nocompatible
+" Allow cursor keys in insert mode
+set esckeys
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set clipboard=unnamed
+" Enhance command-line completion
+set wildmenu
+" Optimize for fast terminal connections
+set ttyfast
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+" Change mapleader
+let mapleader=","
+" TAB settings
+set tabstop=4
+set shiftwidth=4
+" replace TAB with spaces
+set expandtab
+" exception for Makefile
+autocmd Filetype Makefile setlocal noexpandtab
+" Show the (partial) command as it’s being typed
+set showcmd
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+" Disable error bells
+set noerrorbells
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+" Enable per-directory .vimrc files and disable unsafe commands in them
+set exrc
+set secure
+" Respect modeline in files
+set modeline
+set modelines=4
+
+" Look and Feel
+
+" 256 color mode
+set t_Co=256
+" Enable line numbers
+set number
+" Enable syntax highlighting
+syntax on
+" Color scheme
+colorscheme seoul256
+" Highlight current line
+set cursorline
+" Show the cursor position
+set ruler
+" Always show status line
+set laststatus=2
+" Don’t show the intro message when starting Vim
+set shortmess=atI
+" Show the current mode
+set showmode
+" Show the filename in the window titlebar
+
+" Search and replace
+
+" Highlight searches
+set hlsearch
+" Ignore case of searches
+" set ignorecase
+" Highlight dynamically as pattern is typed
+set incsearch
+
+" Strip trailing whitespace and convert DOS line ending (,ss)
+function! StripWhitespaceFixLineEnding()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    :%s/^M$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfunction
+
+" Keyboard mappings
+
+" fix Ctrl Arrow in Putty
+map <Esc>[C <C-Left>
+map <Esc>[D <C-Right>
+
+" tab navigation
+nnoremap <silent><C-Right>  :tabnext<CR>
+nnoremap <silent><C-Left>   :tabprevious<CR>
+nnoremap <silent><C-t>      :tabnew<CR>
+inoremap <silent><C-Right>  <Esc>:tabnext<CR>i
+inoremap <silent><C-Left>   <Esc>:tabprevious<CR>i
+inoremap <silent><C-t>      <Esc>:tabnew<CR>
+" editor-like 
+"nnoremap <C-Home> gg
+"inoremap <C-Home> <Esc>gg
+
+noremap <leader>ss :call StripWhitespaceFixLineEnding()<CR>
+" Save a file as root (,W)
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+set t_ut=
+
+set backup
+function! BackupDir()
+    let l:backupdir=$HOME.'/.bak/'.
+            \substitute(expand('%:p:h'), '^'.$HOME, '~', '')
+    if !isdirectory(l:backupdir)
+        call mkdir(l:backupdir, 'p', 0700)
+    endif
+    let &backupdir=l:backupdir
+    let &backupext=strftime('-%Y%m%d%H%M%S')
+endfunction
+
+autocmd! bufwritepre * call BackupDir()

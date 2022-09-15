@@ -1,0 +1,58 @@
+# .bashrc
+# User specific aliases and functions
+
+# Source global definitions
+[ -f /etc/bashrc ] && . /etc/bashrc
+[ -f /ccase/stdbashrc ] && . /ccase/stdbashrc
+[ -f ~/.alias ] && source  ~/.alias
+
+export LESS=-iM
+export HISTFILESIZE=10000               ## maximum number of lines in HISTFILE
+export HISTSIZE=10000                   ## number of lines saved in HISTFILE
+export HISTTIMEFORMAT='(%d-%b-%y.%T) '  ## history timestamps
+
+# shopt -s checkwinsize ## check window size and update LINES and COLUMNS
+# shopt -s cmdhist      ## keep multiline command in one history entry
+# shopt -s histappend   ## append history to HISTFILE (not overwrite)
+shopt -s checkwinsize cmdhist histappend
+
+function generate_mac ()  {
+  hexchars="0123456789abcdef"
+  echo "24:df:86$( for i in {1..6}; do echo -n ${hexchars:$(( $RANDOM % 16 )):1}; done | sed -e 's/\(..\)/:\1/g')"
+}
+
+export DISPLAY
+export TERM=xterm-256color
+export LC_CTYPE="en_US.utf8"
+export LC_ALL="en_US.utf8"
+export LANG="en_US.UTF-8"
+export EDITOR=vim
+
+alias ll="ls -ltrh"
+alias mail="mutt"
+alias cat="bat"
+
+test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
+
+# Ansible
+export PATH="/usr/local/opt/ansible@2.9/bin:$PATH"
+export ANSIBLE_VAULT_IDENTITY_LIST="dev@~/.vault_dev,prod@~/.vault_prod,federal@~/.vault_federal"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # Fix python forks (breaks ansible if not set)
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew//lib/ruby/gems/3.1.0/gems/:$PATH"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  GIT_PROMPT_ONLY_IN_REPO=0
+  GIT_PROMPT_THEME=Solarized
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
