@@ -1,0 +1,14 @@
+[user]
+    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoqOHDIw6DCf4DM1wvlpUIFjbF8nVLqzqiKIirwhcXBdY2nTRNAZcKPDgNPLJZO3fdPE7gUiNsdgXJZg+/6B5CMgGVow1KPAE4LEJz0cgOajAvv4pglFOLlwl82Xvb9/dtGiuPz/eG4zXnzzd+BtSDYXXSrh6dws0wsmXdGKhXqnUfzk3IiPYU4gLYffAhzVSfvlGcYYxF3fgm15y+dpK2VE0BJoHtPASWIPrxu6w6fB3QDdRkhx38ap72HwInHwmJC1DvihGbBktLCZMhhWNYOjcgpTf83Yhv5A6rZ6SzU/w6wEkvkMFBXq+CknTB+P3lj5wQMGJpHUGdBdL2hljX
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+    gpgsign = true
+
+[core]
+    excludesFile = ~/.gitignore
