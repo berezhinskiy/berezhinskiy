@@ -1,22 +1,31 @@
+tap "1password/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+brew "ansible"
+brew "perl"
+brew "asciiquarium"
+brew "augeas"
+brew "automake"
 brew "bash-completion"
 brew "bash-git-prompt"
 brew "bat"
 brew "btop"
-brew "python@3.10"
 brew "certbot", link: false
 brew "cloc"
 brew "cloud-nuke"
+brew "cmake"
 brew "cmatrix"
 brew "entr"
+brew "esphome"
 brew "exa"
 brew "figlet"
 brew "geoip"
+brew "gh"
 brew "git"
+brew "openjdk"
 brew "groovy"
 brew "htop"
 brew "iozone"
@@ -24,25 +33,52 @@ brew "iperf3"
 brew "jq"
 brew "kubernetes-cli"
 brew "mas"
-brew "mkdocs"
+brew "mkdocs", link: false
+brew "moreutils"
+brew "mysql-client"
 brew "ncdu"
 brew "nmap"
 brew "node"
-brew "node_exporter"
 brew "openfortivpn"
 brew "opensc"
+brew "patchelf"
 brew "pkcs11-tools"
 brew "pyenv"
+brew "python@3.10"
 brew "python@3.9"
 brew "rmlint"
 brew "ruby"
 brew "sevenzip"
+brew "smartmontools"
 brew "speedtest-cli"
 brew "telnet"
 brew "tmux"
 brew "tree"
 brew "vim"
 brew "wget"
+brew "wimlib"
 brew "yamllint"
+cask "1password-cli"
+cask "bleunlock"
 cask "cakebrew"
 cask "font-iosevka"
+cask "mqttx"
+cask "warp"
+mas "1Password for Safari", id: 1569813296
+mas "Darkroom", id: 953286746
+mas "Disk Speed Test", id: 425264550
+mas "Final Cut Pro", id: 424389933
+mas "GarageBand", id: 682658836
+mas "Grammarly for Safari", id: 1462114288
+mas "Home Assistant", id: 1099568401
+mas "iMovie", id: 408981434
+mas "Keka", id: 470158793
+mas "KeyKey", id: 1035137927
+mas "Keynote", id: 409183694
+mas "Messenger", id: 1480068668
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Telegram", id: 747648890
+mas "WhatsApp", id: 1147396723
+mas "Xmind", id: 1327661892
